@@ -1,0 +1,124 @@
+%!TEX program = xelatex
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+%\documentclass{article}
+%\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{ctex}
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra} 
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+\geometry{a4paper,scale=0.8}
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+%\linespread{0.5}
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{10pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{量子信息学}\\ % Title
+lec 8} % Subtitle
+
+\author{\textsc{郝琰 516021910721} % Author
+\\{\textit{ACM Class,2016}}} % Institution
+
+\date{\today} % Date
+\begin{document}
+\maketitle
+\section{Class 1}
+\subsection{相位因子估计}
+$$
+X = HZH
+$$
+$$
+X|0> = |1>
+$$
+$$
+X|1> = |0>
+$$
+$$
+X(\frac{|0>+|1>}{\sqrt{2}}) = 1*\frac{|0>+|1>}{\sqrt{2}}
+$$
+$$
+X(\frac{|0>-|1>}{\sqrt{2}}) = (-1)*\frac{|0>-|1>}{\sqrt{2}}
+$$
+在n维空间里
+$$
+X|n> = |n+1>
+$$
+$$
+X^N = I
+$$
+$$
+\omega_N = exp(\frac{2\pi i}{N})
+$$
+$$
+\omega_0,\omega_1,...,\omega_{N-1}
+$$
+$$
+X = FZF^{+}
+$$
+$$
+F|k> = \frac{1}{\sqrt{N}}\sum_{j=0}^{N-1} \omega^{kj}|j>
+$$
+$$
+F = (\frac{1}{\sqrt{N}}\omega^{kj})_{N*N} \quad \omega = e^{\frac{2\pi i}{N}} \quad N = 2^n
+$$
+书上
+$$
+\begin{align*}
+|\hat{k}> = F|k> &= \frac{1}{\sqrt{2^n}}\sum_{j=0}^{2^n-1}\omega^{kj}|j> \\
+& = \frac{1}{\sqrt{2^n}}\sum_{j=0}^{2^n-1}\omega^{kj}|j> 
+\end{align*}
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

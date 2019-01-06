@@ -1,0 +1,183 @@
+%!TEX program = xelatex
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+%\documentclass{article}
+%\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{ctex}
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra} 
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+\geometry{a4paper,scale=0.8}
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+%\linespread{0.5}
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{10pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{量子信息学}\\ % Title
+lec 9} % Subtitle
+
+\author{\textsc{郝琰 516021910721} % Author
+\\{\textit{ACM Class,2016}}} % Institution
+
+\date{\today} % Date
+\begin{document}
+\maketitle
+\section{Class 1}
+\subsection{idea 1}
+$$
+f: \lbrace0,1\rbrace^n \rightarrow \lbrace 0,1 \rbrace \quad f(x_0) = 1\quad f(x) = 0(x!=x_0)
+$$
+若用量子进行计算(搜素unique answer $x_0$)，则复杂度约为$O(\sqrt{N})$(1996,Grover,PRL)\\
+$O_f$的作用
+$$
+|x>\quad \rightarrow \quad (-1)^{f(x)}|x>
+$$
+\begin{itemize}
+	\item input 
+	$$
+	|0>
+	$$
+	\item the first step
+	$$
+	H^{\bigotimes n} \quad \rightarrow \quad \sum^{2^n-1}_{x=0} \frac{|x>}{\sqrt{2^n}}
+	$$
+	\item the second step
+	$$
+	O_f
+	$$
+	\item the third step
+	$$
+	U_f
+	$$
+	Jump to the second step
+\end{itemize}	
+
+The point is , how to deciede what $U_f$ is. $U_f$的作用在于下次更方便地查询
+$$
+U = 2|\psi><\psi| - I = H^{\bigotimes n}(2|0^{\bigotimes n}><0^{\bigotimes n}|H^{\bigotimes n})
+$$
+把O和U和起来作为G
+$$
+G^k|\psi> \approx |x_0>
+$$
+因此复杂度约为$\sqrt{N}$
+$$
+N = 2^n
+$$
+
+\begin{align*}
+|\psi> &=\frac{1}{\sqrt{N}} \sum_{x=0}^{N-1}|x> \\
+&= \frac{1}{\sqrt{N}} (\sum_{\mbox{x is not solution}}|x^{'}>+\sum_{\mbox{x is solution}}|x^{''}>)\\
+& = \frac{1}{\sqrt{N}}(\sqrt{N-M}|\alpha> + \sqrt{M}|\beta>)
+\end{align*}
+
+$$
+|\psi> = \sqrt{\frac{N-M}{N}}|\psi> + \sqrt{\frac{M}{N}}|\beta>
+$$
+$$
+G = U*O
+$$
+$$
+|\alpha > \rightarrow |\alpha> \quad |\beta> \rightarrow -|\beta>
+$$
+$$
+O = |\alpha><\alpha| - |\beta><\beta| = 2|\alpha><\alpha| - I
+$$
+$$
+U = 2|\psi><\psi| - I
+$$
+G即为两个反射变换的乘积，即为旋转
+$$
+|\psi> = cos\theta|\psi> + sin\theta|\beta>
+$$
+若$\psi$与X轴正向原本夹角$\theta$，则作用结束后与X轴正向夹角$3\theta$
+$$
+O|\psi> = cos(-\theta)|\alpha> + sin(-\theta)|\beta>
+$$
+$$
+G|\psi> = UO|\psi> = cos(3\theta)|\alpha> + sin(3\theta)|\beta>
+$$
+$$
+G|\psi>^k = UO|\psi> = cos((2k+1)\theta)|\alpha> + sin((2k+1)\theta)|\beta>
+$$
+即每次作用可看作该向量顺时针旋转$2\theta$
+$$
+cos(2k+1)\theta |\alpha> + sin(2k+1)\theta|\beta> \approx |\beta>
+$$
+$$
+(2k+1)\sqrt{\frac{M}{N}} = \frac{\pi}{2}
+$$
+$$
+k = \frac{\pi}{4}\sqrt{\frac{N}{M}} - \frac{1}{2}
+$$
+
+\section{Class 3}
+\subsection{Problem 1}
+面对一个黑盒$O_f \in \lbrace O_{f_1},O_{f_2},...,O_{f_N} \rbrace$
+$$
+O_{f_k}|x> = |x> \quad x\ne k
+$$
+$$
+O_{f_k}|k> = |k> \quad x = k
+$$
+如果这些向量已经两两正交，由于不是标准正交，就做一个unitary操作，变化到标准正交基上。即变化到$\lbrace |0>,|1>,...,|d> \rbrace$\\
+可以把原本的正交基作为输入X
+\subsection{Problem 2}
+区分
+$$
+U \in \lbrace I,X,Y,Z \rbrace
+$$
+$$
+(U^A\bigotimes I^B)|\beta_{00}> = \lbrace |\beta_{00}>,|\beta_{01}>,|\beta_{10}>,|\beta_{11}> \rbrace
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

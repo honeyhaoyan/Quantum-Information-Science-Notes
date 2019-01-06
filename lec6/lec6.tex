@@ -1,0 +1,239 @@
+%!TEX program = xelatex
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+%\documentclass{article}
+%\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{ctex}
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra} 
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+\geometry{a4paper,scale=0.8}
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+%\linespread{0.5}
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{10pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{量子信息学}\\ % Title
+lec 6} % Subtitle
+
+\author{\textsc{郝琰 516021910721} % Author
+\\{\textit{ACM Class,2016}}} % Institution
+
+\date{\today} % Date
+\begin{document}
+\maketitle
+\section{Class 1}
+\subsection{review}
+$$
+|\psi> = \frac{|00>+|11>}{\sqrt{2}}
+$$
+整体状态完全确定，个体状态却未知\\
+$$
+\rho^A = tr_B|\psi><\psi| = \frac{1}{1}(|0><0|+|1><1|) = \frac{I^A}{2}
+$$
+$$
+\mbox{同理}\quad \rho^B = \frac{I^B}{2}
+$$
+因此，该系统虽然整体状态已知，个体却是两个状态概率相当，无法得到任何信息
+\subsection{idea 1 : 逻辑门}
+$$
+f : \lbrace0,1\rbrace^n \rightarrow \lbrace0,1\rbrace
+$$
+$O_f$ 输入x和辅助位y，得到x和$y\bigoplus f(x)$
+$$
+O_f^2 = I
+$$
+\section{Class 2: logical gateway}
+\begin{itemize}
+	\item
+	$$
+ I = \left[
+ \begin{matrix}
+   1 & 0 \\
+   0 & 1 
+  \end{matrix}
+  \right] 
+$$
+X,Y,Z
+\item
+H,S,T
+\item
+$$
+R_x(\frac{\theta}{2}) = e^{-i\frac{\theta}{2}X}
+$$
+$$
+R_y(\frac{\theta}{2}) = e^{-i\frac{\theta}{2}Y}
+$$
+$$
+R_z(\frac{\theta}{2}) = e^{-i\frac{\theta}{2}Z}
+$$
+$$
+A^2 = I \quad e^{iXA} = cos(x) + isinx * A
+$$
+$$
+R_x(\frac{\theta}{2}) = cos\frac{\theta}{2}*I - isin\frac{\theta}{2}X = 
+$$
+\end{itemize}
+
+$$
+\left[
+\begin{matrix}
+e^{i(\alpha+\delta)}cos\frac{\theta}{2} & e^{}
+
+\end{matrix}
+\right]
+$$
+$$
+U = \left[
+\begin{matrix}
+a & b \\
+c & d 
+\end{matrix}
+\right]
+$$
+
+任何一个门可以通过
+$$
+CNOT + \lbrace S,T,H \rbrace
+$$
+来构造
+$$
+U = e^{i\alpha}AXBXC \quad ABC = I
+$$
+
+$$ U =
+\left[
+\begin{matrix}
+a & b & c\\
+d & e & f\\
+h & i & j
+\end{matrix}
+\right] 
+$$
+$$ U_i =
+\left[
+\begin{matrix}
+x & y & 0\\
+z & t & 0\\
+0 & 0 & 1
+\end{matrix}
+\right] 
+$$
+$$ U_1U =
+\left[
+\begin{matrix}
+a1 & b1 & c1\\
+0 & e1 & f1\\
+h1 & i1 & j1
+\end{matrix}
+\right] 
+$$
+$$ U_2U =
+\left[
+\begin{matrix}
+1 & 0 & 0\\
+0 & e1 & f1\\
+0 & i1 & j1
+\end{matrix}
+\right] = U_3
+$$
+$$
+U = U_1^+U_2^+U_3
+$$
+
+\clearpage
+\section{Deutsch - Jozsa Algorithm}
+$$
+f : \lbrace 0,1 \rbrace^n \rightarrow \lbrace 0,1 \rbrace
+$$
+$$
+S_0 = \lbrace x:f(x) = 0 \rbrace
+$$
+$$
+S_1 = \lbrace x:f(x) = 1 \rbrace
+$$
+\begin{itemize}
+	\item constant function
+	$$
+	f(x) = f(x^{'})
+	$$
+	\item balanced function
+	$$
+	|S_0| = |S_1|
+	$$
+\end{itemize}	
+要判定f是常数函数还是平衡函数，量子计算只需要查询一次
+\begin{itemize}
+	\item
+	input : $|x>,|->$
+	\item
+	经过$U_f$
+	$$
+	|x>|-> \rightarrow (-1)^{f(x)}|x>|->
+	$$
+	\item
+	$$
+	\frac{|0>+|1>}{\sqrt{2}} 
+	$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

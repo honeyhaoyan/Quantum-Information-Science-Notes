@@ -1,0 +1,112 @@
+%!TEX program = xelatex
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+%\documentclass{article}
+%\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{ctex}
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra} 
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+\geometry{a4paper,scale=0.8}
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+%\linespread{0.5}
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{10pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{量子信息学}\\ % Title
+lec 7} % Subtitle
+
+\author{\textsc{郝琰 516021910721} % Author
+\\{\textit{ACM Class,2016}}} % Institution
+
+\date{\today} % Date
+\begin{document}
+\maketitle
+\section{Class 1}
+\subsection{Preview 1}
+$$
+|c,t> \rightarrow |c,t\bigoplus c>
+$$
+若c=0,则对t不做操作，若c=1,则对t逻辑取反\\
+CNOT + 单个量子比特门可以做一切操作
+\section{Class 2 , 3: Simulation}
+$$
+|\psi(t)> = e^{-iHt}|\psi(0)>
+$$
+$$
+|\psi(t)> = U(t)|\psi(0)>
+$$
+$$
+U = e^{-iK}
+$$
+\begin{itemize}
+	\item
+	input
+	$$
+	H\quad |\psi (0)> \quad t_f \quad \epsilon
+	$$
+	\item
+	output
+	$$
+	|\tilde{\psi}(t_f)> s.t.
+	$$
+	$$
+	|<\tilde{\psi}(t_f)|e^{iHt_f}|\psi(0)>| \geq 1-\epsilon
+	$$
+\end{itemize}
+
+H: 哈密顿量
+$$
+H = \sum_{k=1}^{poly(n)} H_k \quad \mbox{$H_k$ 是作用于常数个系统的哈密顿量}
+$$
+$$
+H = \sum_{k = 1}^{n-1} X_k \bigoplus X_{k+1}
+$$
+$$
+e^{i(H_1+H_2)} = e^{iH_1}*e^{iH_2} \quad if \quad [H_1,H_2] = 0
+$$
+$$
+e^{i(H_1H_2)} = lim_{n \rightarrow \infty}(e^{i\frac{H_1}{n}}e^{i\frac{H_2}{n}})^n
+$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

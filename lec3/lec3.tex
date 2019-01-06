@@ -1,0 +1,348 @@
+%!TEX program = xelatex
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+
+%\documentclass{article}
+%\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{graphicx} % Required for including pictures
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{ctex}
+
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra} 
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage[colorlinks,linkcolor=black]{hyperref}
+\geometry{a4paper,scale=0.7}
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+%\linespread{0.5}
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{10pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Introduction to Data Science Homework}\\ % Title
+hw 1} % Subtitle
+
+\author{\textsc{郝琰 516021910721} % Author
+\\{\textit{ACM Class,2016}}} % Institution
+
+\date{\today} % Date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+
+\section*{Class 1}
+
+\subsection{标准正交积(ONS)}
+$$
+||\psi|| = (<\psi|\psi>)^{\frac{1}{2}}
+$$
+$$
+H = span  |e_1>, |e_2> , ... , |e_d>
+$$
+$$
+H = span  |1>, |2> , ... , |d>
+$$
+$$
+|\psi> = \sum^d_{i = 1}\alpha _i |i>
+$$
+$$
+\alpha_i = <i | \psi>
+$$
+$$
+\sum^d_{i = 1} |i><i| = I_d
+$$
+
+字空间上的单位矩阵：字空间上的投影算子\\
+
+A : H -> H linear operator\\
+
+The Heimition conjunction of A is defined as A daggger
+
+$$
+(|\psi >, A |\psi >) = 
+$$
+
+A : H -> $H^{'}$
+
+$$
+A = I_HAI_{H^{'}}
+$$
+$$
+\sum_{ij}<i|A|j> |i><j|
+$$
+$$
+\sum_{ij}<e_i|A|e_j> |e_i><e_j|
+$$
+
+$$
+A = \sum_{ij}<i|A|j> |i><j|
+$$
+$A^{+}$ 共轭转置
+
+$$
+A^{+} = \sum_{ij}<i|A^{+}|j> |i><j|
+$$
+$$
+A^{+} = \sum_{ij}(<i|A|j>)^{*} |i><j|
+$$
+
+$$
+A = |\psi><\psi|,  
+$$
+\begin{itemize}
+\item Hermitian operator A: H->H
+\item 123
+\item A is normal is $AA^{+} = A^{+}A$
+ $$
+A = \sum^d_{i = 1} \alpha |i><i|
+$$
+$$
+A^2 = \sum^d_{i =1} \alpha^2 |i><i|
+$$
+$$
+A = \sum^k_{i=1} \lambda_iP_i
+$$
+$$
+P_iP_j = \delta_{ij}P_i, P_i^{+} = P_i , \sum P_i = I
+$$
+\end{itemize}
+
+\subsubsection*{Unitary operator U}
+$$
+U^{+}U = I , U^{-1} = U^{+}
+$$
+酉变换，相当于旋转，保持内积不变
+$$
+(U|\psi>,U|\psi>) = (|\psi>,|\psi>)
+$$
+$$
+U = \sum^d_{j = 1}e^{i\theta j} |j><j|
+$$
+
+\section*{Class 2}
+Polar Decomposition
+$$
+A = JU 
+$$
+$$
+A^{+} = (JU)^{+} = U^{+}J^{+} 
+$$
+$$
+AA^{+} = J^2, J = (AA^{+})^{\frac{1}{2}}
+$$
+$$
+A = UDU^{+} = ?
+$$
+奇异值分解 ？？？ 
+$$
+A = JU = V
+$$
+
+把A写作普分解的好处
+$$
+A = \sum_{i = 1}^k \lambda_iP_i
+$$
+$$
+A^n = \sum_{i = 1}^k \lambda_i^nP_i
+$$
+\subsubsection*{commutator}
+$$
+[A,B] = AB - BA
+$$
+$$
+[A,B]  =0, AB = BA
+$$
+iff
+$$
+A = \sum_i \lambda_i|i><i|
+$$
+$$
+B = \sum_i \mu_i |i><i|
+$$
+特殊的情形，例如，B 测得 $\mu_i$ ,A 测得$\lambda_i$。这就是对译子的特征.\\
+
+反对译子:
+$$
+\lbrace A,B \rbrace = AB+BA
+$$
+$$
+\lbrace A,B \rbrace = 0, AB = -BA
+$$
+
+\section*{some 应用}
+\subsection*{trace}
+$$
+tr(A) = \sum_{i = 1}^d <i|A|i>
+$$
+$$
+tr(AB) = tr(BA)
+$$
+$$
+tr(A|\psi><\psi|) = <\psi|A|\psi>
+$$
+???
+$$
+e^{i\theta \overrightarrow{n} \overrightarrow{\delta}} ???
+$$
+
+\subsection{如何将两个空间张成一个空间}
+$$
+H = span \lbrace |i> , i = 1,2,3,...d \rbrace
+$$
+$$
+H^{'} = span \lbrace |i> , i = 1,2,3,...d^{'} \rbrace
+$$
+$$
+dim(H \oplus H^{'}) = dd^{'}
+$$
+
+\clearpage
+\section*{2018.7.15}
+\section*{Class 1}
+
+
+%A : H $\rightarrow$ H. $A^*$ is the unique linear operator such that
+\subsection*{$A^+$ and some review}
+\begin{itemize}
+\item
+A : H $\rightarrow$ H. $A^*$ is the unique linear operator such that
+$$
+(|\psi>, A|\psi >) = (A^+|\psi>, |\psi >)
+$$
+\item
+construct
+\begin{align*}
+<i|A^+|i> & = (<i|A|i>)^* \\
+A^+ &= \sum_{ij} (<j|A|i>)^*|i><j|
+\end{align*}
+\item
+unique
+$$
+(|\psi>, A|\psi >) = (A^+|\psi>, |\psi >) = (B|\psi>, |\psi >)
+$$
+$$
+(|\psi>, A^+|\psi >) = (|\psi>, B|\psi >)
+$$
+$$
+(|\psi>, (A^+ - B)|\psi >) = 0
+$$
+$$
+A^+ = B
+$$
+\end{itemize}
+
+$A^+$:算子函数，相当于把一个算子映射为另一个算子
+
+一些性质(和转置性质相似)
+
+\begin{itemize}
+	\item
+	$$
+	(A \bigotimes B)^+ = A^+ \bigotimes B^+
+	$$
+	\item
+	$$
+	(AB)^+ = B^+A^+
+	$$
+	\item
+	tr()
+	\item 
+	det()
+\end{itemize}
+
+\subsection{补充}		
+
+\subsubsection{tr()}
+$$
+tr(A) = \sum_{i = 1}^d <i|A|i>
+$$
+\begin{itemize}
+	\item
+	linear
+	\item
+	cydic
+	\item f: L(H) -> C ; linear and cydic
+	$$
+	f = \lambda tr()
+	$$
+\end{itemize}
+
+\subsubsection{全体线性算子构成一个希尔伯特空间}
+$$
+L(H) = \lbrace A: A is linear operator over H \rbrace
+$$
+$$
+<A,B> = tr(A^+B)
+$$
+
+\subsubsection{Schmidt procedure}
+对任意一组（n个）线性独立的向量，存在同样个数的线性正交基使得其与前者张成同样的线性空间
+
+
+\subsection{idea 1: 柯西洗袜子}
+$$
+|<v|w>| \leq 1 \quad <v|v> = 1 \quad <w|w> = 1
+$$
+首先用w扩充一组标准正交基，w是这组基的第一个元素。
+\begin{align*}
+1 = <v|v> & = <v| \sum_{i = 1}^d |i><i| |v>\\
+& = <v|w><w|v> + <v| \sum_{i = 2}^d |i><i| |v>\\
+& \geq <v|w><w|v>
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
